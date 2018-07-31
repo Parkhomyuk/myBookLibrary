@@ -1,0 +1,9 @@
+$columns: 12
+.row
+  display: flex
+  flex-wrap: wrap
+@for $i from 1 through $columns
+  .col-#{$i}
+    flex: 0 0 100%/$columns*$i
+  .col-offset-#{$i}
+    margin-left: 100%/$columns*$i

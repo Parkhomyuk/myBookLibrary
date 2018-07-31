@@ -1,0 +1,45 @@
+@import "../../assets/bootstrap-sass/variables"
+@import "../../sass/variables-custom"
+@import "../../sass/grid"
+
+.sidebar-main
+  width: $sidebar-base
+  height: 100vh
+  position: absolute
+  position: fixed
+  color: $primary-color-font
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  z-index: 3
+  ul
+    background-color: $primary-color-sidebar
+    width: inherit
+    height: 100vh-$nav-bar-base
+    list-style-type: none
+    padding-top: 30%
+    margin-left: 0
+    padding-left: 0
+  .sidebar-header
+    width: inherit
+    height: $nav-bar-base
+    background-color: $primary-color-red
+    font-family:  'Tahoma', sans-serif
+    position: relative
+    font-size: $font-size-base*1.5
+    i
+      position: absolute
+      top: 30%
+      left: 20%
+    img
+      height: $nav-bar-base*0.5
+      width: auto
+
+.sidebar-menu
+  margin-top: 5vh
+  margin-left: 10%
+  samp
+    padding: 0 0 0 5%
+    font-size: $font-size-base*1.2
+
+

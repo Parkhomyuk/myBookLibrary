@@ -1,0 +1,138 @@
+<div [ngClass]="{'backbloc':toggleBack.display,'':!toggleBack.display}"></div>
+<div   class="popUpMain" [ngClass]="{'popupBlock':toggleBack.displayDetails,'overlay':!toggleBack.displayDetails}" (click)="onCloseToggle()">
+  <div class="popup">
+    <div class="close">
+
+      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+    </div>
+    <div class="content">
+      <div class="row"  >
+        <div class="book-img col-5">
+          <img [src]="bookCurrent.thumbnailUrl" alt="no image" *ngIf="bookCurrent.thumbnailUrl">
+          <img src="assets/img/noBook.jpg" alt="no image" *ngIf="!bookCurrent.thumbnailUrl">
+        </div>
+        <div class="book-descrub col-7">
+          <div class="book-descrub-title">{{bookCurrent.title}}</div>
+          <div class="book-descrub-author row">
+            <span class="col-1"></span>
+            <span class="col-1">by:</span>
+            <div class="col-9"><i *ngFor="let author of bookCurrent.authors">{{author}}</i></div>
+          </div>
+          <div class="book-descrub-pages row">
+            <span class="col-1"></span>
+            <span class="col-1">pages:</span>
+            <div class="col-5">{{bookCurrent.pageCount}}</div>
+          </div>
+          <div class="book-descrub-year row">
+            <span class="col-1"></span>
+            <span class="col-1">year:</span>
+            <div class="col-5">{{bookCurrent.publishedDate.$date | date:"dd/MM/yyyy" }}</div>
+          </div>
+          <div class="book-descrub-status row">
+            <span class="col-1"></span>
+            <span col-1>status:</span>
+            <div class="col-5">{{bookCurrent.status}}</div>
+          </div>
+          <div class="book-descrub-category row">
+            <span class="col-1"></span>
+            <span col-1>category:</span>
+            <div class="col-5">
+              <i *ngFor="let category of bookCurrent.categories">{{category}}</i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popupDelete" [ngStyle]="{'display':toggleBack.deletePopUp}">
+  <div class="popup">
+    <div class="close">
+      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" (click)="onDeleteCansel()"></span>
+    </div>
+    <div class="popupDelete-info">
+      Do You Want delete <br><span>{{bookDelete.title}}</span><br> by <span>{{bookDelete.authors[0]}}</span> ?
+    </div>
+    <div class="btn-manage row">
+      <div class="col-offset-1"></div>
+      <button class="btn btn-warning col-4" (click)="onDeleteCansel()">Cancel</button>
+      <div class="col-2"></div>
+      <button class="btn btn-danger col-4"(click)="onDeleteBook(bookDelete._id)">Delete</button>
+    </div>
+</div>
+</div>
+<main [ngStyle]="{'position':toggleBack.static}" >
+  <div class="container">
+    <h1>All Books</h1>
+    <div class="row">
+      <div class="col-xs-12 col-ms-4 col-md-3 book" *ngFor="let book of books; let i=index" >
+          <div class="row"  >
+            <div class="book-img col-5">
+              <img [src]="book.thumbnailUrl" alt="no image" *ngIf="book.thumbnailUrl">
+              <img src="assets/img/noBook.jpg" alt="no image" *ngIf="!book.thumbnailUrl">
+            </div>
+            <div class="book-descrub col-7">
+                    <div class="book-descrub-title">{{book.title}}</div>
+                    <div class="book-descrub-author row">
+                      <span class="col-1"></span>
+                      <span class="col-1">by:</span>
+                      <div class="col-9"><i *ngFor="let author of book.authors">{{author}}</i></div>
+                    </div>
+                    <div class="book-descrub-pages row">
+                      <span class="col-1"></span>
+                      <span class="col-1">pages:</span>
+                      <div class="col-5">{{book.pageCount}}</div>
+                    </div>
+                    <div class="book-descrub-year row">
+                      <span class="col-1"></span>
+                      <span class="col-1">year:</span>
+                      <div class="col-5">{{book.publishedDate.$date | date:"dd/MM/yyyy" }}</div>
+                    </div>
+                    <div class="book-descrub-status row">
+                      <span class="col-1"></span>
+                      <span col-1>status:</span>
+                      <div class="col-5">{{book.status}}</div>
+                    </div>
+                    <div class="book-descrub-category row">
+                      <span class="col-1"></span>
+                      <span col-1>category:</span>
+                      <div class="col-5">
+                        <i *ngFor="let category of book.categories">{{category}}</i>
+                      </div>
+                    </div>
+
+            </div>
+        </div>
+        <div class="manage-btn"  >
+          <button class="btn btn-primary" (click)="onDetailsBook(book)">details</button>
+          <button class="btn btn-warning">set</button>
+          <button class="btn btn-danger"(click)="onDeleteWarning(book._id)">delete</button>
+        </div>
+      </div>
+      </div>
+    <div class="pagination" style="transform: translateX(50%)">
+      <nav aria-label="Page navigation example" >
+        <ul class="pagination">
+          <li class="page-item" style="background-color: #00a8e6"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+
+
+    </div>
+
+
+</main>

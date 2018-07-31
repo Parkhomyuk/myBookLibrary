@@ -1,0 +1,116 @@
+@import "../../assets/bootstrap-sass/variables"
+@import "../../sass/variables-custom"
+@import "../../sass/grid"
+
+header
+  width: 100vw-$sidebar-base
+  .main-nav-container
+    background-color: $primary-color-header
+    position: absolute
+    position: fixed
+    width: 100vw-$sidebar-base
+    margin-left: $sidebar-base
+    height: $nav-bar-base
+    color: $primary-color-font
+    z-index: 10
+    .row
+      display: flex
+      flex-wrap: wrap
+      width: inherit
+      height: $nav-bar-base
+      margin: 0
+      padding: 0
+    .nav-header
+      font-size: $font-size-base*1.2
+      .books-count, .categories-count, .search, .add-newBook
+        height: $nav-bar-base
+        padding-top: $nav-bar-base*0.4
+
+      .statistic-books-count
+        text-align: left
+      .add-newBook
+        padding-top: $nav-bar-base*0.30
+        .add-newBook-btn
+          height: $nav-bar-base*0.5
+          background-color: $primary-color-red
+          border-radius: 3vw
+          border: 0.1vw solid $primary-color-font
+          font-size: $font-size-base*0.8
+      .search
+        padding-top: $nav-bar-base*0.35
+        .search-book
+          .wrap-icon
+            position: absolute
+            height: $nav-bar-base
+            width: 2vw
+            margin-top: -0.01vh
+            height: $nav-bar-base*0.4
+            border-left: 0.1vw solid $primary-color-font
+            border-radius: 10px
+            cursor: pointer
+            span
+              position: absolute
+              top: $nav-bar-base*0.1
+              padding-left: 0.5vw
+              font-size: $font-size-base*0.8
+
+          label>input
+            padding-left: 20%
+            height: $nav-bar-base*0.5
+            width:  (100vw-$sidebar-base)/2*0.3
+            margin-top: -1vh
+            border-radius: 10px
+            border: 0.1vw solid $primary-color-font
+            background-color: $primary-color-header
+            color: $primary-color-font
+            opacity: 1
+          ::-webkit-input-placeholder
+            color: $primary-color-font
+            font-size: $font-size-base*0.8
+            padding-left: 0.5vw
+          ::-ms-input-placeholder
+            color: $primary-color-font
+            font-size: $font-size-base*0.8
+            padding-left: 0.5vw
+          :-ms-input-placeholder
+            color: $primary-color-font
+            font-size: $font-size-base*0.8
+            padding-left: 0.5vw
+          ::-moz-placeholder
+            color: $primary-color-font
+            font-size: $font-size-base*0.8
+            padding-left: 0.5vw
+
+          :-moz-placeholder
+            font-size: $font-size-base*0.8
+            padding-left: 0.5vw
+
+          label>input:focus
+            outline: none
+
+
+    .label-sta
+        background-color: blue
+        position: relative
+        span
+          position: absolute
+          height: $nav-bar-base
+          top: 40%
+          bottom: 0
+          margin: 0 50%
+    .navbar-right
+      .navbar-right-user
+        margin-top: $nav-bar-base*0.2
+        display: flex
+        flex-direction: column
+        align-items: center
+        .user-name
+          width: auto
+          font-size: $font-size-base*1.2
+          font-weight: bold
+          white-space: nowrap
+        img
+          height: $nav-bar-base*0.75
+          width: $nav-bar-base*0.75
+          border-radius: 50%
+          border: 2px solid $primary-color-header

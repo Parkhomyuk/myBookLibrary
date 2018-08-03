@@ -1,6 +1,6 @@
 <div class="main-menu">
   <app-header></app-header>
-  <app-sidebar></app-sidebar>
-  <app-main></app-main>
+  <app-sidebar (onChanged)="displayChanges($event)" ></app-sidebar>
+  <app-main [toggleCategoriesMenu]="toggleCategories"></app-main>
 </div>
 

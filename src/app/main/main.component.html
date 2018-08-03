@@ -1,4 +1,6 @@
+<!--background popup menu-->
 <div [ngClass]="{'backbloc':toggleBack.display,'':!toggleBack.display}"></div>
+<!--popup menu view-set-newBook-->
 <div   class="popUpMain" [ngClass]="{'popupBlock':toggleBack.displayDetails,'overlay':!toggleBack.displayDetails}" (click)="onCloseToggle()">
   <div class="popup">
     <div class="close">
@@ -6,7 +8,7 @@
       <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
     </div>
     <div class="content">
-      <div class="row"  >
+      <div class="row" *ngIf="viewPopup=='viewBook'">
         <div class="book-img col-5">
           <img [src]="bookCurrent.thumbnailUrl" alt="no image" *ngIf="bookCurrent.thumbnailUrl">
           <img src="assets/img/noBook.jpg" alt="no image" *ngIf="!bookCurrent.thumbnailUrl">
@@ -14,57 +16,168 @@
         <div class="book-descrub col-7">
           <div class="book-descrub-title">{{bookCurrent.title}}</div>
           <div class="book-descrub-author row">
-            <span class="col-1"></span>
-            <span class="col-1">by:</span>
+
+            <span class="col-1">author(s):</span>
             <div class="col-9"><i *ngFor="let author of bookCurrent.authors">{{author}}</i></div>
           </div>
           <div class="book-descrub-pages row">
-            <span class="col-1"></span>
+
             <span class="col-1">pages:</span>
-            <div class="col-5">{{bookCurrent.pageCount}}</div>
+            <div class="col-9">{{bookCurrent.pageCount}}</div>
           </div>
           <div class="book-descrub-year row">
-            <span class="col-1"></span>
+
             <span class="col-1">year:</span>
-            <div class="col-5">{{bookCurrent.publishedDate.$date | date:"dd/MM/yyyy" }}</div>
+            <div class="col-9">{{bookCurrent.publishedDate.$date | date:"dd/MM/yyyy" }}</div>
           </div>
           <div class="book-descrub-status row">
-            <span class="col-1"></span>
-            <span col-1>status:</span>
-            <div class="col-5">{{bookCurrent.status}}</div>
+
+            <span class="col-1">status:</span>
+            <div class="col-9">{{bookCurrent.status}}</div>
           </div>
           <div class="book-descrub-category row">
-            <span class="col-1"></span>
-            <span col-1>category:</span>
-            <div class="col-5">
+            <span class="col-1">category:</span>
+            <div class="col-9">
               <i *ngFor="let category of bookCurrent.categories">{{category}}</i>
             </div>
+          </div>
+          <div class="book-descrub-isbn row">
+            <span class="col-1">isbn:</span>
+            <div class="col-9">{{bookCurrent.isbn}}</div>
           </div>
 
         </div>
       </div>
+
+    </div>
+    <div class="shortDescription" *ngIf="viewPopup=='viewBook'">
+
+      <p class="col-12" *ngIf="bookCurrent.longDescription">{{bookCurrent.longDescription | short}}</p>
+      <p class="col-12" *ngIf="!bookCurrent.longDescription">There is no description for this book</p>
+    </div>
+    <div class="row" *ngIf="viewPopup=='editBook'">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+              <div formGroupName="userData">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    formControlName="username"
+                    class="form-control">
+            <span
+              *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched"
+              class="help-block">
+              <span *ngIf="signupForm.get('userData.username').errors['nameIsForbidden']">This name is invalid!</span>
+              <span *ngIf="signupForm.get('userData.username').errors['required']">This field is required!</span>
+
+            </span>
+                </div>
+                <div class="form-group">
+                  <label for="email">email</label>
+                  <input
+                    type="text"
+                    id="email"
+                    formControlName="email"
+                    class="form-control">
+            <span
+              *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched"
+              class="help-block">Please enter a valid email!</span>
+                </div>
+              </div>
+              <div class="radio" *ngFor="let gender of genders">
+                <label>
+                  <input
+                    type="radio"
+                    formControlName="gender"
+                    [value]="gender">{{ gender }}
+                </label>
+              </div>
+              <div formArrayName="hobbies">
+                <h4>Your Hobbies</h4>
+                <button
+                  class="btn btn-default"
+                  type="button"
+                  (click)="onAddHobby()">Add Hobby</button>
+                <div
+                  class="form-group"
+                  *ngFor="let hobbyControl of signupForm.get('hobbies').controls; let i = index">
+                  <input type="text" class="form-control" [formControlName]="i">
+                </div>
+              </div>
+        <span
+          *ngIf="!signupForm.valid && signupForm.touched"
+          class="help-block">Please enter valid data!</span>
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+
     </div>
   </div>
 </div>
+<!--popup delete menu-->
 <div class="popupDelete" [ngStyle]="{'display':toggleBack.deletePopUp}">
   <div class="popup">
     <div class="close">
-      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" (click)="onDeleteCansel()"></span>
+      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" (click)="onDeleteCancel()"></span>
     </div>
     <div class="popupDelete-info">
       Do You Want delete <br><span>{{bookDelete.title}}</span><br> by <span>{{bookDelete.authors[0]}}</span> ?
     </div>
     <div class="btn-manage row">
       <div class="col-offset-1"></div>
-      <button class="btn btn-warning col-4" (click)="onDeleteCansel()">Cancel</button>
+      <button class="btn btn-warning col-4" (click)="onDeleteCancel()">Cancel</button>
       <div class="col-2"></div>
       <button class="btn btn-danger col-4"(click)="onDeleteBook(bookDelete._id)">Delete</button>
     </div>
 </div>
 </div>
+<!--main content-->
 <main [ngStyle]="{'position':toggleBack.static}" >
   <div class="container">
-    <h1>All Books</h1>
+    <h1  *ngIf="toggleCategoriesMenu!=='none'">{{toggleCategoriesMenu}}</h1>
+    <h1 (click)="onSortByTitle()" *ngIf="toggleCategoriesMenu=='none'">All Books</h1>
+    <h2 *ngIf="toggleCategoriesMenu=='Categories'">{{mainTitle}}</h2>
+    <div class="row categories-filter"[style.display]="toggleCategoriesMenu=='Categories'?'block':'none'">
+      <span class="badge col-1" (click)="resetFilters()">All books</span>
+      <span class="badge col-1"   *ngFor="let cat of categories" (click)="onSelectCategory(cat)">{{cat}}</span>
+    </div>
+    <div [style.display]="toggleCategoriesMenu=='Sort'?'block':'none'">
+
+      <div class="row">
+        <div class="col-offset-1"></div>
+        <div class="col-1"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></div>
+        <div class="col-1"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></div>
+      </div>
+
+    </div>
+    <div [style.display]="toggleCategoriesMenu=='Search'?'block':'none'">
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div [style.display]="toggleCategoriesMenu=='Add'?'block':'none'">
+      <h1>Add new book</h1>
+    </div>
+
     <div class="row">
       <div class="col-xs-12 col-ms-4 col-md-3 book" *ngFor="let book of books; let i=index" >
           <div class="row"  >
@@ -87,7 +200,7 @@
                     <div class="book-descrub-year row">
                       <span class="col-1"></span>
                       <span class="col-1">year:</span>
-                      <div class="col-5">{{book.publishedDate.$date | date:"dd/MM/yyyy" }}</div>
+                      <div class="col-5" *ngIf="book.publishedDate!=undefined">{{book.publishedDate.$date | date:"dd/MM/yyyy" }}</div>
                     </div>
                     <div class="book-descrub-status row">
                       <span class="col-1"></span>
@@ -106,33 +219,23 @@
         </div>
         <div class="manage-btn"  >
           <button class="btn btn-primary" (click)="onDetailsBook(book)">details</button>
-          <button class="btn btn-warning">set</button>
+          <button class="btn btn-warning" (click)="onEditBook(book)">edit</button>
           <button class="btn btn-danger"(click)="onDeleteWarning(book._id)">delete</button>
         </div>
       </div>
       </div>
-    <div class="pagination" style="transform: translateX(50%)">
-      <nav aria-label="Page navigation example" >
-        <ul class="pagination">
-          <li class="page-item" style="background-color: #00a8e6"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
+    <!--pagination-->
+    <div class="row">
+      <div class="col-offset-6"></div>
+      <div class="col-6">
+        <div class="btn-group pull-xs-right pagination">
+          <button *ngFor="let page of pageNumbers" (click)="changePage(page)"
+                  class="btn btn-primary" [class.active]="page == selectedPage">
+            {{page}}
+          </button>
+        </div>
+      </div>
     </div>
 
-
     </div>
-
-
 </main>

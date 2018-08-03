@@ -20,10 +20,41 @@
   .popup
     position: relative
     color: $second-color-font
+    .shortDescription
+      position: absolute
+      height: 20vh
+      top: 50vh
+      height: 20vh
+      width: 100%
+      padding-left: 1vw
+      padding-right: 1vw
+      font-size: $font-size-base
     .content
       position: absolute
-      top: 5vh
+      top: 7vh
       width: 100%
+      height: 43vh
+      .row
+        margin: 0
+        .book-img
+          text-align: center
+          img
+            width: 15vw
+            height: auto
+        .book-descrub
+          .book-descrub-title
+            text-align: center
+            font-size: $font-size-base*2
+            font-weight: bold
+            margin-bottom: $font-size-base
+          .book-descrub-author, .book-descrub-pages, .book-descrub-year, .book-descrub-status, .book-descrub-category, .book-descrub-isbn
+            .col-1
+             font-size: $font-size-base
+             margin-top: $font-size-base*0.3
+             margin-right: $font-size-base*0.3
+             color: $color-note
+            .col-9
+             font-size: $font-size-base*1.3
     .close
       position: absolute
       width: 100%
@@ -81,6 +112,7 @@
 main
   height: 100vh
   position: relative
+  background-color: $primary-color-main
   .backdrop
     background-color: rgba(0,0,0,0.6)
     position: fixed
@@ -97,8 +129,13 @@ main
     padding-top: $nav-bar-base+2vh
     background-color: $primary-color-main
     color: $primary-color-font
-
+    .pagination
+      margin-top: $nav-bar-base
     .row
+      .badge
+        margin-left: 0.5vw
+        margin-top: 0.5vh
+        font-size: $font-size-base*0.8
       .book
         margin-top: 4vh
         padding: 0 2vw 0 1vw
@@ -137,6 +174,8 @@ main
           text-align: center
           .btn
             margin: 0 1px 0 1px
+          .btn:focus
+            outline: none
 
 
 

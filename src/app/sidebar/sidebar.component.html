@@ -2,45 +2,46 @@
   <div class="sidebar-header">
     <i>
       <img src="../../assets/img/logo-1.png" alt="">
-      <span>Books</span>
+      <span (click)="onOpenMenuSidebar('none')">Books</span>
     </i>
   </div>
 
   <ul>
-    <li>
-      <div class="sidebar-home sidebar-menu">
-        <div class="sidebar-menu-border"></div>
-        <label>
-          <span >ABC</span>
-        </label><samp> Alphabet</samp>
-      </div>
-    </li>
-    <li >
+    <li (click)="onOpenMenuSidebar('Categories')" >
       <div class="sidebar-menu">
-        <div class="sidebar-menu-border"></div>
         <label>
           <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
         </label>
         <samp>Categories</samp>
+
       </div>
     </li>
-    <li >
+    <li (click)="onOpenMenuSidebar('Sort')" >
       <div class="sidebar-menu">
-        <div class="sidebar-menu-border"></div>
         <label>
           <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
         </label>
         <samp>Sort</samp>
       </div>
     </li>
-    <li >
+    <li (click)="onOpenMenuSidebar('Search')" >
       <div class="sidebar-menu">
-        <div class="sidebar-menu-border"></div>
         <label>
-          <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </label>
-        <samp>Filtr</samp>
+        <samp>Search</samp>
       </div>
     </li>
+    <li (click)="onOpenMenuSidebar('Add')">
+      <div class="sidebar-menu">
+        <label>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </label>
+        <samp>add Book</samp>
+      </div>
+    </li>
+
     </ul>
+
+
 </div>

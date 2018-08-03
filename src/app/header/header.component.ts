@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Subscription} from "rxjs";
 import {DataService} from "../data-service";
 
 @Component({
@@ -7,21 +8,21 @@ import {DataService} from "../data-service";
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
-  countBook: number=0;
-  countCategories: number=0;
+  subscribtion: Subscription;
+  subscribtionCat: Subscription;
+  countBook: Number=0;
+  countCategories: Number=0;
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.getData().subscribe((books)=>{
-      this.countBook=books['books'].length;
-      let categories=[]
-      for(let i=0;i<books['books'].length;i++){
-        categories=categories.concat(books['books'][i].categories)
-      }
-      categories.sort()
-      this.countCategories= new Set(categories).size;
-
-    })
+    this.subscribtion=this.dataService.countBookChanged.subscribe(data=>{ this.countBook=data});
+    this.subscribtionCat=this.dataService.countCategoriesChanged.subscribe(data=>{ this.countCategories=data});
+    this.countBook=this.dataService.getCountBooks();
+    this.countCategories=this.dataService.getCountCategories();
+  }
+  ngOnDestroy(){
+    this.subscribtion.unsubscribe();
+    this.subscribtionCat.unsubscribe();
   }
 
 }

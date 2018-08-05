@@ -1,0 +1,175 @@
+
+<div class="backblocAdd"  ></div>
+<div   class="popUpMain"    >
+  <div class="popup">
+    <div class="close" (click)="onCloseToggle()">
+
+      <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+    </div>
+    <div class="content">
+
+      <!--popup menu Addtook-->
+
+      <div class="row addMenu">
+        <h4 class="titlePopUp">Add A New Book</h4>
+        <div class="col-12 form-addBook" >
+          <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+            <div class="row" >
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="bookTitle">Title</label>
+                  <input
+                    type="text"
+                    id="bookTitle"
+                    class="form-control"
+                    formControlName="title"
+                  >
+                  <span *ngIf="bookForm.get('title').errors" class="form-required">This field is required! And Title requires capital letter </span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-4">
+                <div class="form-group">
+                  <label for="bookisbn">isbn</label>
+                  <input
+                    type="text"
+                    id="bookisbn"
+                    class="form-control"
+                    formControlName="isbn"
+                  >
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group">
+                  <label for="bookDate">Published Date</label>
+                  <input
+                    type="date"
+                    id="bookDate"
+                    class="form-control"
+                    formControlName="publishedDate"
+                  >
+                  <span *ngIf="bookForm.get('publishedDate').errors" class="form-required">This field is required! </span>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="bookPages">Pages Count</label>
+                  <input
+                    type="number"
+                    id="bookPages"
+                    class="form-control"
+                    formControlName="pageCount"
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="row author-cat">
+              <div class="col-6" formArrayName="authors">
+                <label for="bookDescription">Authors</label>
+                <div class="row"
+                     *ngFor="let author of bookForm.get('authors').controls; let i= index"
+                     [formGroupName]="i">
+                  <div class="col-8" >
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="nameAuthor"
+                    >
+                  </div>
+                  <div class="col-offset-1"></div>
+                  <div class="col-3">
+                    <button class="btn btn-danger" type="button" (click)="onDeleteAuthor(i)">X</button>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-6" formArrayName="categories">
+                <label for="bookDescription">Categories</label>
+                <div class="row"
+                     *ngFor="let category of bookForm.get('categories').controls; let i= index"
+                     [formGroupName]="i">
+                  <div class="col-8">
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="nameCategory"
+                    >
+                  </div>
+                  <div class="col-offset-1"></div>
+                  <div class="col-3">
+                    <button class="btn btn-danger" type="button" (click)="onDeleteCategory(i)">X</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="form-group">
+                  <label for="bookStatus">Status</label>
+                  <input
+                    type="text"
+                    id="bookStatus"
+                    class="form-control"
+                    formControlName="status"
+                  >
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="form-group">
+                  <label for="bookUrl">URL</label>
+                  <input
+                    type="text"
+                    id="bookUrl"
+                    class="form-control"
+                    formControlName="thumbnailUrl"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="bookDescription">Description</label>
+                     <textarea
+                       type="text"
+                       id="bookDescription"
+                       class="form-control"
+                       rows="3"
+                       formControlName="longDescription"
+                     ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 btn-manage">
+                <div class="row">
+                  <div class="col-3">
+                    <button class="btn btn-success" type="submit" [disabled]="!bookForm.valid">Save</button>
+                  </div>
+                  <div class="col-3" (click)="onAddAuthor()">
+                    <button class="btn btn-info" type="button">add Author</button>
+                  </div>
+                  <div class="col-3" (click)="onAddCategory()">
+                    <button class="btn btn-success" type="button">add Category</button>
+                  </div>
+                  <div class="col-3">
+                    <button class="btn btn-danger" type="button" (click)="onCloseToggle()">Cancel</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

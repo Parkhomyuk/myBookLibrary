@@ -11,6 +11,8 @@ export class DataService{
   BooksChanged = new Subject<any>();
   countOfBook:number;
   countOfCategories:number;
+  toggleOfAddBook:string;
+  toggleAddBook= new Subject<any>();
   booksAllChanges:any=[];
   configUrl = 'assets/data.json';
 
@@ -51,6 +53,9 @@ export class DataService{
   getCategoriesCountChanged(){
     return this.countCategoriesChanged.next(this.countOfCategories)
   }
+  getOfAddBookChanges(){
+    return this.toggleAddBook.next(this.toggleOfAddBook)
+  }
   getBooks(){
     return this.books;
   }
@@ -59,6 +64,9 @@ export class DataService{
   }
   getCountCategories(){
     return this.countCategories;
+  }
+  getAddBookChanges(){
+    return this.toggleAddBook;
   }
 
 }

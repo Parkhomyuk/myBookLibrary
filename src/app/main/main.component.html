@@ -1,6 +1,6 @@
 <!--background popup menu-->
 <div [ngClass]="{'backbloc':toggleBack.display,'':!toggleBack.display}"></div>
-<app-add-book (onNewBook)="Show($event)"></app-add-book>
+<app-add-book (onNewBook)="onAddNewBook($event)"   [prop]="addBookToggle"   (onChangedToggle)="onChangedT($event)" [style.display]="addBookToggle==true? 'block':'none'" ></app-add-book>
 <!--popup menu view-set--->
 <div   class="popUpMain" [ngClass]="{'popupBlock':toggleBack.displayDetails,'overlay':!toggleBack.displayDetails}" >
   <div class="popup">
@@ -251,7 +251,7 @@
       <div class="col-6">
          <div class="row">
            <div class="col-6 addBook">
-             <div class="sidebar-menu">
+             <div class="sidebar-menu" (click)="onShowAddnewBook('open')">
                <label>
                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                </label>

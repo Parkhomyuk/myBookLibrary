@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import {Subscription} from "rxjs";
 import {DataService} from "../data-service";
 import {Book} from "../model/book";
 import {FormGroup, FormControl,FormArray, Validators} from "@angular/forms";
+
 
 
 
@@ -11,7 +12,8 @@ import {FormGroup, FormControl,FormArray, Validators} from "@angular/forms";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit  {
+
   public mainTitle='All Books'
   public books:any=[];
   public booksAll:any=[];
@@ -23,6 +25,7 @@ export class MainComponent implements OnInit {
   @Input() toggleCategoriesMenu:string;
 
 //manage popUp
+  public addBookToggle:boolean=false;
   public viewPopup:string;
   bookForm: FormGroup;
   public currentBookEdit: Book;
@@ -36,9 +39,10 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getBooks();
+      this.getBooks();
       this.bookCurrent= new Book();
       this.initForm();
+
   }
   getBooks(){
     this.dataService.getData().subscribe((books)=>{
@@ -286,7 +290,7 @@ export class MainComponent implements OnInit {
     }
     this.onCloseToggle();
   }
-  Show(book){
+  onAddNewBook(book){
     let authors=[];
     let categories=[];
     for(let j=0;j<book['authors'].length;j++){
@@ -300,7 +304,15 @@ export class MainComponent implements OnInit {
     let newAd=this.booksAll[this.booksAll.length-1]['_id']+1;
     book['_id']=newAd;
     this.booksAll.push(book);
+    this.addBookToggle=false;
+  }
+  onShowAddnewBook(){
+    this.addBookToggle=true;
+  }
+  onChangedT(tog:any){
+    this.addBookToggle=tog;
 
   }
+
 
 }

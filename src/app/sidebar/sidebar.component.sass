@@ -13,6 +13,8 @@
   justify-content: flex-start
   z-index: 3
   background-color: $primary-color-sidebar
+  @media screen and (max-width: $break-tablet)
+    display: none
   ul
     background-color: $primary-color-sidebar
     width: inherit
@@ -21,6 +23,8 @@
     padding-top: 30%
     margin-left: 0
     padding-left: 0
+    li
+      cursor: pointer
   .sidebar-header
     width: inherit
     height: $nav-bar-base

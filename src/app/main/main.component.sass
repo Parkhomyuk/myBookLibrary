@@ -13,6 +13,12 @@
   position: absolute
   height: 70vh
   width: 40vw
+  @media screen and (max-width: $break-tablet)
+    width: 98vw
+    left: 1vw
+    height: 92vh
+    top: 7vh
+
   top: 20vh
   left: 30vw
   z-index: 12
@@ -29,11 +35,20 @@
       padding-left: 1vw
       padding-right: 1vw
       font-size: $font-size-base
+      @media screen and (max-width: $break-tablet)
+        font-size: $font-size-base*3
+        top: 20vh
+      @media screen and (max-width: $break-small)
+        font-size: $font-size-base*5
+        top: 20vh
     .content
       position: absolute
       top: 7vh
       width: 100%
       height: 43vh
+      .shortDescription
+        @media screen and (max-width: $break-tablet)
+          margin-top: 20vh
       .row
         margin: 0
         .book-img
@@ -41,12 +56,17 @@
           img
             width: 15vw
             height: auto
+            @media screen and (max-width: $break-tablet)
+              width: 40vw
+              height: auto
         .book-descrub
           .book-descrub-title
             text-align: center
             font-size: $font-size-base*2
             font-weight: bold
             margin-bottom: $font-size-base
+            @media screen and (max-width: $break-tablet)
+              font-size: $font-size-base*5
           .book-descrub-author, .book-descrub-pages, .book-descrub-year, .book-descrub-status, .book-descrub-category, .book-descrub-isbn
             .col-1
              font-size: $font-size-base
@@ -55,6 +75,22 @@
              color: $color-note
             .col-9
              font-size: $font-size-base*1.3
+            @media screen and (max-width: $break-tablet)
+              .col-1
+                font-size: $font-size-base*2.5
+                margin-top: $font-size-base*0.3
+                margin-right: $font-size-base*0.3
+                color: $color-note
+              .col-9
+                font-size: $font-size-base*3
+            @media screen and (max-width: $break-small)
+              .col-1
+                font-size: $font-size-base*4
+                margin-top: $font-size-base*0.3
+                margin-right: $font-size-base*0.3
+                color: $color-note
+              .col-9
+                font-size: $font-size-base*4
     .close
       position: absolute
       width: 100%
@@ -70,6 +106,7 @@
         margin-top: 1vh
 
   background-color: $primary-color-font
+
 .popupBlock
   display: block
 .overlay
@@ -84,10 +121,19 @@
   z-index: 12
   background-color: white
   display: none
+  @media screen and (max-width: $break-tablet)
+    width: 80vw
+    height: 30vh
+    left: 10vw
   .popupDelete-info
     margin-top: 3vmax
     font-size: $font-size-base*1
     text-align: center
+    @media screen and (max-width: $break-tablet)
+      font-size: $font-size-base*3
+      margin-top: 10vh
+    @media screen and (max-width: $break-small)
+      font-size: $font-size-base*5
     span
       color: $color-note
   .close
@@ -108,9 +154,15 @@
     .btn
       font-size: $font-size-base
       height: 2vmax
+      @media screen and (max-width: $break-tablet)
+        font-size: $font-size-base*3
+        height: 5vh
+      @media screen and (max-width: $break-small)
+        font-size: $font-size-base*5
+        margin-top: 2vh
+
 //main content styles
 main
-  height: 100vh
   position: relative
   background-color: $primary-color-main
   .backdrop
@@ -129,6 +181,17 @@ main
     padding-top: $nav-bar-base+2vh
     background-color: $primary-color-main
     color: $primary-color-font
+
+    @media screen and (max-width: $break-tablet)
+      width: 90vw
+      margin-left: 5vw
+      padding-left: 5vw
+      overflow: auto
+      padding-top: $nav-bar-base+2vh
+      background-color: $primary-color-main
+      color: $primary-color-font
+      h1
+       font-size: $font-size-base*7
     .pagination
       margin-top: $nav-bar-base
     .row
@@ -136,6 +199,8 @@ main
         margin-left: 0.5vw
         margin-top: 0.5vh
         font-size: $font-size-base*0.8
+      .sort
+        cursor: pointer
       .book
         margin-top: 4vh
         padding: 0 2vw 0 1vw
@@ -146,7 +211,11 @@ main
           min-height: 220px
           img
             width: 100%
+            @media screen and (max-width: $break-tablet)
+              width: 70%
+              margin-left: 15%
             height: auto
+
 
         .book-descrub
           background-color: white
@@ -154,31 +223,108 @@ main
           min-height: 220px
           width: 100%
           color: $second-color-font
+
           .book-descrub-title
             font-size: $font-size-base*1.1
+            @media screen and (max-width: $break-tablet)
+              font-size: $font-size-base*3.5
+              padding-right: 2vw
+            @media screen and (max-width: $break-small)
+              font-size: $font-size-base*5
             font-weight: bold
             text-align: center
             margin-bottom: 10%
+            @media screen and (max-width: $break-tablet)
+              margin-bottom: 2%
             margin-top: 10%
           .book-descrub-author, .book-descrub-pages, .book-descrub-year, .book-descrub-status, .book-descrub-category
             width: 100%
             padding-left: 10%
             font-size: $font-size-base*0.8
+            @media screen and (max-width: $break-tablet)
+              font-size: $font-size-base*2.5
+              background-color: white
+            @media screen and (max-width: $break-small)
+              font-size: $font-size-base*4
+              padding-left: 2%
+
             span
               text-align: start
               color: $color-note
         .manage-btn
           position: absolute
           bottom: -2vh
+          @media screen and (max-width: $break-tablet)
+           bottom: -2.5vh
+           right: 0%
           right: 10%
           text-align: center
           .btn
             margin: 0 1px 0 1px
+            font-size: $font-size-base*1.1
+            @media screen and (max-width: $break-tablet)
+              font-size: $font-size-base*2.5
+            @media screen and (max-width: $break-small)
+              font-size: $font-size-base*5
           .btn:focus
             outline: none
+.editMenu
+  background-color: $primary-color-font
+.titlePopUp
+  margin-left: 1vw
+  color: $color-font
+.form-editBook
+  padding-left: 1vw
+  background-color: $font-size-base
+  .form-group
+    margin-left: 1vw
+    margin-right: 2vw
+    margin-top: 1vh
+    margin-bottom: 1vh
+    label
+      font-size: $font-size-base
+    input
+      height: 3vh
+      font-size: $font-size-base*1.2
+
+    textarea
+      height: 9vh
+      font-size: $font-size-base*1.2
+  .author-cat
+    padding-left: 1vw
+    padding-bottom: 1vh
+    font-size: $font-size-base
+    input
+      height: 3vh
+      margin-top: 1vh
+      font-size: $font-size-base*1.2
+    .btn
+      height: 3vh
+      font-size: $font-size-base
+      margin-top: 1vh
+      padding-top: 0.5vh
+  .btn-manage
+    text-align: center
+    margin-top: 1vh
+    margin-bottom: 1vh
+    button
+      font-size: $font-size-base
+main
+  .container
+    .row
+      .recover, .addBook
+        cursor: pointer
+      samp
+        margin-left: 1vw
 
 
+/*validation forms
 
-
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched
+  border: 1px solid red
+.form-required
+  font-size: $font-size-base
+  color: red
 
 

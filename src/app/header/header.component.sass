@@ -4,6 +4,8 @@
 
 header
   width: 100vw-$sidebar-base
+  @media screen and (max-width: $break-tablet)
+    width: 100vw
   .main-nav-container
     background-color: $primary-color-header
     position: absolute
@@ -13,6 +15,16 @@ header
     height: $nav-bar-base
     color: $primary-color-font
     z-index: 10
+    @media screen and (max-width: $break-tablet)
+      background-color: $primary-color-header
+      position: absolute
+      position: fixed
+      width: 100vw
+      margin-left: 0
+      padding-left: 2vw
+      height: $nav-bar-base
+      color: $primary-color-font
+      z-index: 10
     .row
       display: flex
       flex-wrap: wrap
@@ -22,6 +34,8 @@ header
       padding: 0
     .nav-header
       font-size: $font-size-base*1.2
+      @media screen and (max-width: $break-tablet)
+        font-size: $font-size-base*2
       .books-count, .categories-count, .search, .add-newBook
         height: $nav-bar-base
         padding-top: $nav-bar-base*0.4

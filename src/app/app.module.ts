@@ -9,6 +9,8 @@ import {DataService} from "./data-service";
 import {HttpClientModule} from "@angular/common/http";
 import {Book} from "./model/book";
 import { ShortPipe } from './pipes/short.pipe';
+import { CorrecttitlePipe } from './pipes/correcttitle.pipe';
+import { AddBookComponent } from './main/add-book/add-book.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ShortPipe } from './pipes/short.pipe';
     HeaderComponent,
     SidebarComponent,
     MainComponent,
-    ShortPipe
+    ShortPipe,
+    CorrecttitlePipe,
+    AddBookComponent
 
   ],
   imports: [
